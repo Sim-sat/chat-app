@@ -1,0 +1,1 @@
+export const standardProfilePicture = "https://firebasestorage.googleapis.com/v0/b/chat-app-dfdfa.firebasestorage.app/o/pp.png?alt=media&token=ea8e6a2e-f908-43a9-a379-66a7c42f1f62";
