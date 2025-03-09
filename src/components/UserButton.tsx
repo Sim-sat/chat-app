@@ -13,11 +13,6 @@ interface UserButtonProps {
 
 export function UserButton(props: UserButtonProps) {
 
-    useEffect(() => {
-        console.log(props.chat);
-        console.log(auth.currentUser?.displayName);
-    }, []);
-
     return (
         <UnstyledButton className={classes.user} onClick={() => props.openChatWindow(props.chat)}>
             <Group>

@@ -65,9 +65,6 @@ export default function ChatWindow(props: Props) {
         if (auth.currentUser) {
             const currentUid = auth.currentUser?.uid;
             const otherUid = getOtherUid(props.chat.uid, currentUid);
-            console.log("Chatuid:" + props.chat.uid);
-            console.log("currentUid:" + currentUid);
-            console.log("otherUid:" + otherUid);
 
             const q1 = query(
                 collection(db, "messages"),
@@ -86,8 +83,7 @@ export default function ChatWindow(props: Props) {
             );
             const unsubscribeReceived = onSnapshot(q1, (QuerySnapshot: QuerySnapshot<Message>) => {
                 const fetchedMessages: Message[] = [];
-                console.log("feteched received")
-                console.log(fetchedMessages);
+
 
                 QuerySnapshot.forEach((doc: QueryDocumentSnapshot<Message>) => {
                     fetchedMessages.push({...doc.data(), id: doc.id});
@@ -100,9 +96,6 @@ export default function ChatWindow(props: Props) {
 
             const unsubscribeSent = onSnapshot(q2, (QuerySnapshot: QuerySnapshot<Message>) => {
                 const fetchedMessages: Message[] = [];
-                console.log("feteched sent")
-
-                console.log(fetchedMessages);
                 QuerySnapshot.forEach((doc: QueryDocumentSnapshot<Message>) => {
                     fetchedMessages.push({...doc.data(), id: doc.id});
                 });
@@ -133,9 +126,7 @@ export default function ChatWindow(props: Props) {
     };
 
     const deleteChat = async () => {
-        console.log("deleteChat");
         await deleteDoc(doc(db, "chats", props.chat.uid))
-            .then(() => console.log("Success"))
             .then(() => props.setCurrentChat(null))
             .catch((error: Error) => {
                 console.error(error)

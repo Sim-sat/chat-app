@@ -26,7 +26,6 @@ export function NavbarSimple() {
         auth.signOut();
         navigate("/");
         window.location.reload();
-        console.log("signed out");
     };
 
     const links = data.map((item) => (

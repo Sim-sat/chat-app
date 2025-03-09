@@ -26,9 +26,7 @@ export default function Profile() {
             return;
         }
         const profilePictureRef = ref(storage, username as string);
-        await uploadBytes(profilePictureRef, file).then(() => {
-            console.log("Uploaded");
-        });
+        await uploadBytes(profilePictureRef, file).catch((error) => console.error(error));
         const url = await getDownloadURL(profilePictureRef);
         if (auth.currentUser) {
             const userRef = doc(db, "users", auth.currentUser?.uid);

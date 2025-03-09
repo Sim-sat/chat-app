@@ -35,7 +35,6 @@ export default function Chatroom() {
         }
 
         const {uid, displayName, photoURL} = auth.currentUser!;
-        console.log(uid, displayName, photoURL);
         await addDoc(collection(db, "messages"), {
             text: message,
             name: displayName!,

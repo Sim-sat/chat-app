@@ -43,8 +43,6 @@ export default function Chats() {
                 (a: User, b: User) => a.createdAt - b.createdAt
             );
             setUsers(sortedUser);
-            console.log(sortedUser)
-            console.log(users.map(user => user.name))
 
         });
         return () => {
@@ -81,8 +79,6 @@ export default function Chats() {
         const foundUsers: User[] = []
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-            console.log(userToAdd);
             foundUsers.push({
                 uid: doc.data().uid,
                 name: doc.data().name,

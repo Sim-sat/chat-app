@@ -67,10 +67,8 @@ export function AuthenticationForm(props: Props) {
         signInWithPopup(auth, provider).then(async r => {
             if (r) {
                 const name = r.user.displayName ? r.user.displayName : generateUsername();
-                console.log(name);
                 const exists = await checkIfUserExists(name)
                 if (!exists) {
-                    console.log("doesnt exist");
                     addUser(name, r.user.uid, r.user.email, r.user).then(() => {
                             navigate("/home");
                             window.location.reload();
@@ -109,10 +107,9 @@ export function AuthenticationForm(props: Props) {
         signInAnonymously(auth).then((r) => {
             navigate("/home");
             addUser(null, r.user.uid, null, r.user).then(() => {
-                console.log("Successfully logged in!");
                 window.location.reload();
             });
-        }).catch((error) => console.log(error))
+        }).catch((error) => console.error(error))
     }
 
     return (
@@ -133,13 +130,12 @@ export function AuthenticationForm(props: Props) {
                     createUserWithEmailAndPassword(auth, form.values.email, form.values.password)
                         .then((r) => {
                             addUser(form.values.name, r.user.uid, r.user.email, r.user).then(() => {
-                                    console.log("Successfully logged in!");
                                 }
                             ).then(() => {
                                 navigate("/home");
                                 window.location.reload();
                             });
-                        }).catch((error) => console.log(error));
+                        }).catch((error) => console.error(error));
                 } else
                     signInWithEmailAndPassword(auth, form.values.email, form.values.password).then(() => {
                         navigate("/home");
